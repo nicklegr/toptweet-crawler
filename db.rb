@@ -19,6 +19,9 @@ class Tweet
   validates_uniqueness_of :status_id
 end
 
+# add index as follows:
+#   db.tweets.ensureIndex({status_id:1},{unique:true});
+
 Mongoid.configure do |conf|
   conf.master = Mongo::Connection.new.db('toptweets')
 end
