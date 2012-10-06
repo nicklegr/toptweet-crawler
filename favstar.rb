@@ -17,9 +17,9 @@ class Favstar
     URLS.each do |url|
       doc = Nokogiri::HTML(open(url))
 
-      doc.css('a.bird[href]').each do |a|
+      doc.css('a.fs-date[href]').each do |a|
         link = a['href']
-        if link.match(%r|twitter\.com(?:.*)/(?:\w+)/status(?:es)?/(\d+)|)
+        if link.match(%r|/users/\w+?/status/(\d+)|)
           tweet_ids << $1.to_i
         end
       end
