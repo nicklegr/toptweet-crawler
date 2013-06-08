@@ -5,7 +5,7 @@ require 'sinatra/url_for'
 require 'haml'
 require 'coffee-script'
 require './db'
-# require './groonga'
+require './groonga'
 
 TWEET_LIMIT = 50
 
@@ -31,13 +31,9 @@ end
 get '/search_tweet' do
   query = params[:q]
 
-  table_name = 'Tweets'
-  sort_key = 'created_at'
-
   if query.empty?
-    @tweets = Tweet.desc(:id_str).limit(TWEET_LIMIT)
+    @tweets = Tweet.where(:created_at.ne => nil).desc(:status_id).limit(TWEET_LIMIT)
   else
-=begin
     # インスタンスの作成(初回のみ)
     GroongaDB.instance
 
@@ -55,14 +51,14 @@ get '/search_tweet' do
     snippet.add_keyword(query)
 
     # @todo escape query
-    tweets = GroongaDB.instance[table_name]
+    tweets = GroongaDB.instance['Tweets']
       .select {|e| e.text =~ query}
-      .sort([[sort_key, :desc]], offset: 0, limit: TWEET_LIMIT)
+      .sort([['created_at', :desc]], offset: 0, limit: TWEET_LIMIT)
 
     @tweets = []
     i = 0
     tweets.each do |e|
-      tweet = Tweet.find(e.status_id)
+      tweet = Tweet.where(status_id: e.status_id).first
 
       tweet.text = snippet.execute(e[".text"]).join
 
@@ -71,7 +67,6 @@ get '/search_tweet' do
       i += 1
       break if i >= TWEET_LIMIT
     end
-=end
   end
 
   content_type :js
