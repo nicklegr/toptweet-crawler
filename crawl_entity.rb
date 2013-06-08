@@ -29,6 +29,7 @@ Tweet.where(:created_at.exists => false).each do |tweet|
       user_id: status.user.id,
       screen_name: status.user.screen_name,
       retweet_count: status.retweet_count,
+      fav_count: status.favorite_count,
       created_at: status.created_at,
     )
 
