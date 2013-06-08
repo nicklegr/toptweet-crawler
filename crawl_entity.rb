@@ -3,6 +3,7 @@
 require 'twitter'
 require 'pp'
 require './db'
+require './groonga'
 
 yaml = YAML.load_file("config.yaml")
 
@@ -30,6 +31,12 @@ Tweet.where(:created_at.exists => false).each do |tweet|
       retweet_count: status.retweet_count,
       created_at: status.created_at,
     )
+
+    GroongaDB.instance["Tweets"].add({
+      status_id: status.id,
+      text: status.text,
+      created_at: status.created_at,
+    })
 
     sleep 0.5
   rescue Twitter::Error::NotFound, Twitter::Error::Forbidden => e
