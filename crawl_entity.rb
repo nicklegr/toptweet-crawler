@@ -33,12 +33,12 @@ Tweet.where(:created_at.exists => false).each do |tweet|
 
     sleep 0.5
   rescue Twitter::Error::NotFound, Twitter::Error::Forbidden => e
-    # íœÏ‚İ or Œ®ƒAƒJ
+    # å‰Šé™¤æ¸ˆã¿ or éµã‚¢ã‚«
     tweet.delete
   rescue Twitter::Error::BadRequest => e
     pp e
 
-    # rate limit‚È‚ç‚ ‚«‚ç‚ß‚é
+    # rate limitãªã‚‰ã‚ãã‚‰ã‚ã‚‹
     if e.to_s.match("Rate limit")
       puts "rate limit exceeded"
       exit
@@ -46,7 +46,7 @@ Tweet.where(:created_at.exists => false).each do |tweet|
   rescue => e
     pp e
 
-    # ‚È‚ñ‚¾‚ë‚¤
-    # @todo Over capacity‘Î‰
+    # ãªã‚“ã ã‚ã†
+    # @todo Over capacityå¯¾å¿œ
   end
 end

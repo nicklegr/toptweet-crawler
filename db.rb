@@ -14,7 +14,7 @@ class Tweet
   field :retweet_count, type: Integer
   field :fav_count, type: Integer
 
-  field :created_at, type: Time # Twitterから取得した時刻。not レコード作成時刻
+  field :created_at, type: Time # Twitter縺九ｉ蜿門ｾ励＠縺滓凾蛻ｻ縲Ｏot 繝ｬ繧ｳ繝ｼ繝我ｽ懈�先凾蛻ｻ
 
   validates_uniqueness_of :status_id
 end

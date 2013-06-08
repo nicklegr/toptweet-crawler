@@ -12,7 +12,7 @@ class Favotter
   def self.get
     tweet_ids = []
 
-    # Žw’èfavˆÈã‚ð‚·‚×‚ÄŽæ“¾‚Å‚«‚é‚Ü‚Åƒy[ƒW‚ð‘—‚é
+    # æŒ‡å®šfavä»¥ä¸Šã‚’ã™ã¹ã¦å–å¾—ã§ãã‚‹ã¾ã§ãƒšãƒ¼ã‚¸ã‚’é€ã‚‹
     (1..MAX_PAGE).each do |i|
       url = BASE_URL
       url += "&page=#{i}" if i >= 2
