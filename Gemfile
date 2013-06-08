@@ -14,6 +14,7 @@ gem 'emk-sinatra-url-for'
 gem 'thin'
 gem 'haml'
 gem 'coffee-script'
+gem 'therubyracer'
 
 group :groonga do
   gem 'rroonga'

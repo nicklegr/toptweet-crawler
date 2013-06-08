@@ -31,6 +31,7 @@ GEM
     i18n (0.6.0)
     io-like (0.3.0)
     json (1.7.7)
+    libv8 (3.11.8.17)
     method_source (0.8.1)
     mongo (1.6.2)
       bson (~> 1.6.2)
@@ -53,6 +54,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    ref (1.0.5)
     rroonga (3.0.0)
       archive-zip
       json
@@ -72,6 +74,9 @@ GEM
     sinatra-reloader (1.0)
       sinatra-contrib
     slop (3.4.3)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -98,5 +103,6 @@ DEPENDENCIES
   rroonga
   sinatra
   sinatra-reloader
+  therubyracer
   thin
   twitter
