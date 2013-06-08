@@ -1,0 +1,11 @@
+html = '''
+  <table class="table">
+
+  <% @tweets.each do |tweet| %>
+    <%= haml :_tweet, locals: { tweet: tweet } %>
+  <% end %>
+
+  </table>
+'''
+
+$('#tweets').html(html)

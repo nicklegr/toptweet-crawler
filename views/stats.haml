@@ -1,0 +1,9 @@
+%h3 統計情報
+
+%table.table{ style: 'width: 40%' }
+  %tr
+    %td 最終更新時刻
+    %td= @last_update.strftime('%Y/%m/%d %H:%M:%S')
+  %tr
+    %td ツイート数
+    %td= @tweet_count

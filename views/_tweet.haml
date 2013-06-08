@@ -1,0 +1,15 @@
+%tr
+  %td
+    %a{ href: "https://twitter.com/#{tweet['screen_name']}" }
+      = tweet['screen_name']
+  %td
+    = tweet['text']
+  %td
+    %nobr
+      = "#{tweet['retweet_count']} RT"
+    %br
+    %nobr
+      = "#{tweet['fav_count']} fav"
+  %td
+    %a{ href: "https://twitter.com/#{tweet['screen_name']}/status/#{tweet['status_id']}" }
+      = tweet['created_at'].getlocal.strftime('%Y/%m/%d %H:%M:%S')

@@ -1,0 +1,8 @@
+%h3 最近のトップツイート
+
+= haml :_search_box, locals: { search_type: 'all' }
+
+#tweets
+  %table.table
+    - @tweets.each do |tweet|
+      = haml :_tweet, locals: { tweet: tweet }
