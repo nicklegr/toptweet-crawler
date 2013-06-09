@@ -2,6 +2,7 @@ html = '''
   <table class="table">
 
   <% @tweets.each do |tweet| %>
+    <% tweet.text.gsub!(/'/){ "\\'" } # 'が3つ含まれるとコンパイルエラーになるため %>
     <%= haml :_tweet, locals: { tweet: tweet } %>
   <% end %>
 
