@@ -1,4 +1,6 @@
 require 'pp'
+require 'pry'
+require 'pry-nav'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/url_for'
@@ -8,6 +10,7 @@ require './db'
 require './groonga'
 
 TWEET_LIMIT = 50
+API_TWEET_LIMIT = 500
 
 set :views, File.dirname(__FILE__) + "/views"
 set :public_folder, File.dirname(__FILE__) + "/public"
@@ -73,4 +76,23 @@ get '/search_tweet' do
 
   content_type :js
   CoffeeScript.compile erb(:"search_tweet.js.coffee"), { no_wrap: true }
+end
+
+get '/api/search' do
+  # @todo check api key
+  query = params[:q]
+
+  # @todo escape query
+  tweets = GroongaDB.instance['Tweets']
+    .select {|e| e.text =~ query}
+    .sort([['created_at', :asc]], offset: 0, limit: API_TWEET_LIMIT)
+
+  content_type :json
+  tweets.map{|e|
+    {
+      'status_id' => e.status_id,
+      'text' => e.text,
+      'created_at' => e.created_at,
+    }
+  }.to_json
 end
