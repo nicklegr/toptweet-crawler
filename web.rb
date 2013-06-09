@@ -15,7 +15,7 @@ Tilt::CoffeeScriptTemplate.default_bare = true
 
 get '/js/:filename' do
   content_type :js
-  coffee :"#{params[:filename]}"
+  CoffeeScript.compile erb(:"#{params[:filename]}.coffee"), { no_wrap: true }
 end
 
 get '/' do
