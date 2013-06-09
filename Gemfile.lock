@@ -22,7 +22,7 @@ GEM
     daemons (1.1.9)
     emk-sinatra-url-for (0.2.1)
       sinatra (>= 0.9.1.1)
-    eventmachine (1.0.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.7)
