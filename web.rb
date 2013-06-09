@@ -9,6 +9,8 @@ require './groonga'
 
 TWEET_LIMIT = 50
 
+set :views, File.dirname(__FILE__) + "/views"
+set :public_folder, File.dirname(__FILE__) + "/public"
 Tilt::CoffeeScriptTemplate.default_bare = true
 
 get '/js/:filename' do
