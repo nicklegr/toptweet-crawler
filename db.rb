@@ -21,6 +21,7 @@ end
 
 # add index as follows:
 #   db.tweets.ensureIndex({status_id:1},{unique:true});
+#   db.tweets.ensureIndex({created_at:1});
 
 Mongoid.configure do |conf|
   conf.master = Mongo::Connection.new.db('toptweets')
